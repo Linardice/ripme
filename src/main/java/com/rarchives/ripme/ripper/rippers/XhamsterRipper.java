@@ -39,7 +39,7 @@ public class XhamsterRipper extends AbstractHTMLRipper {
 
     @Override
     public String getDomain() {
-        return "xhamster.com";
+        return "xhamster.desi";
     }
 
     @Override
@@ -57,25 +57,25 @@ public class XhamsterRipper extends AbstractHTMLRipper {
 
     @Override
     public String getGID(URL url) throws MalformedURLException {
-        Pattern p = Pattern.compile("^https?://[\\w\\w.]*xhamster2?\\.com/photos/gallery/.*?(\\d+)$");
+        Pattern p = Pattern.compile("^https?://[\\w\\w.]*xhamster2?\\.desi/photos/gallery/.*?(\\d+)$");
         Matcher m = p.matcher(url.toExternalForm());
         if (m.matches()) {
             return m.group(1);
         }
-        p = Pattern.compile("^https?://[\\w\\w.]*xhamster2?\\.com/users/([a-zA-Z0-9_-]+)/(photos|videos)(/\\d+)?");
+        p = Pattern.compile("^https?://[\\w\\w.]*xhamster2?\\.desi/users/([a-zA-Z0-9_-]+)/(photos|videos)(/\\d+)?");
         m = p.matcher(url.toExternalForm());
         if (m.matches()) {
             return "user_" + m.group(1);
         }
-        p = Pattern.compile("^https?://.*xhamster2?\\.com/(movies|videos)/(.*)$");
+        p = Pattern.compile("^https?://.*xhamster2?\\.desi/(movies|videos)/(.*)$");
         m = p.matcher(url.toExternalForm());
         if (m.matches()) {
             return m.group(2);
         }
 
             throw new MalformedURLException(
-                "Expected xhamster.com gallery formats: "
-                        + "xhamster.com/photos/gallery/xxxxx-#####"
+                "Expected xhamster2.desi gallery formats: "
+                        + "xhamster2.desi/photos/gallery/xxxxx-#####"
                         + " Got: " + url);
     }
 
@@ -97,7 +97,7 @@ public class XhamsterRipper extends AbstractHTMLRipper {
 
     @Override
     public boolean pageContainsAlbums(URL url) {
-        Pattern p = Pattern.compile("^https?://[\\w\\w.]*xhamster\\.com/users/([a-zA-Z0-9_-]+)/(photos|videos)(/\\d+)?");
+        Pattern p = Pattern.compile("^https?://[\\w\\w.]*xhamster2\\.desi/users/([a-zA-Z0-9_-]+)/(photos|videos)(/\\d+)?");
         Matcher m = p.matcher(url.toExternalForm());
         LOGGER.info("Checking if page has albums");
         LOGGER.info(m.matches());
